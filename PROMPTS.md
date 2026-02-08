@@ -173,3 +173,38 @@
 
 **Explanation:**
 > Case'in "Must Have" gereksinimlerinden olan anahtar-kilit mekanizması ve envanter yönetimi SOLID prensiplerine uygun olarak tamamlandı.
+
+
+## Prompt 11: Fixing NullReferenceException in Door Interaction
+
+**Tool:** ChatGPT-4
+**Date/Time:** 2026-02-08 21:00
+
+**Prompt:**
+> "Inspector'da Item ID kısımlarına 'BlueKey' ve 'RedKey' yaz. diğer bilgilerini ne yapacağız, NullReferenceException: Object reference not set to an instance of an object... [Hata Metni]"
+
+**Response (Summary):**
+> Hatanın kaynağı olan atanmamış referanslar (RequiredKey) ve eksik InventoryManager tespiti analiz edildi. Ludu Arts'ın 'Silent Bypass' yasağına uygun olarak Debug.LogError içeren güvenli kod blokları sağlandı. ScriptableObject alanlarının (ID, Name, Icon) nasıl doldurulacağı detaylandırıldı.
+
+**How I Used It:**
+- [x] Adapted
+
+**Explanation:**
+> Kodun çalışma anında çökmesini önlemek için null-check mekanizmaları eklendi. Geliştirme sürecindeki hataların loglanması standardı uygulandı.
+
+## Prompt 12: Handling MissingReferenceException and Implementing Complex Interactables
+
+**Tool:** ChatGPT-4
+**Date/Time:** 2026-02-08 21:30
+
+**Prompt:**
+> "MissingReferenceException: The object of type 'InteractionSystem.Runtime.Interactables.Door' has been destroyed... bu hata var. (Ardından sandık ve şalter adımları)"
+
+**Response (Summary):**
+> Unity Editor'ün "Missing Object" referans hatası analiz edildi ve InteractionDetector sınıfına null-check koruması eklendi. Hold interaction kullanan sandık (Chest) ve event-based çalışan şalter (Switch) sistemlerinin kurulum mantığı açıklandı. Nesneler arası bağ kurma (Chained/Chained interactions) yöntemleri UnityEvent üzerinden örneklendi.
+
+**How I Used It:**
+- [x] Directly used
+
+**Explanation:**
+> Editor kaynaklı hatalar giderilerek sistem stabilitesi artırıldı. Sandık ve Şalter gibi karmaşık nesneler, dökümandaki modüler yapıya sadık kalınarak oluşturuldu.

@@ -82,6 +82,12 @@ namespace InteractionSystem.Runtime.Player
 
         private void HandleInteractionInput()
         {
+            if (m_CurrentInteractable == null || (m_CurrentInteractable is MonoBehaviour mono && !mono.gameObject.activeInHierarchy))
+            {
+                ClearCurrentInteractable();
+                return;
+            }
+
             if (m_CurrentInteractable == null)
             {
                 ResetHoldTimer();

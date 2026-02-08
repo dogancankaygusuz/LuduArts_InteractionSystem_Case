@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SO_Key_Blue
   m_EditorClassIdentifier: Assembly-CSharp::InteractionSystem.Runtime.Core.ItemData
   m_ItemID: BlueKey
-  m_ItemName: 
-  m_Icon: {fileID: 0}
+  m_ItemName: Blue Security Key
+  m_Icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}

@@ -40,11 +40,25 @@ namespace InteractionSystem.Runtime.Interactables
         {
             if (m_IsLocked)
             {
-                InventoryManager inventory = Object.FindFirstObjectByType<InventoryManager>();
-
-                if (inventory != null && inventory.HasItem(m_RequiredKey.ItemID))
+                // 1. Güvenlik Kontrolü: Gereken anahtar atanmýþ mý?
+                if (m_RequiredKey == null)
                 {
-                    m_IsLocked = false; // Kilit açýldý
+                    Debug.LogError($"[{nameof(Door)}] {gameObject.name} kilitli iþaretlenmiþ ama 'Required Key' atanmamýþ!");
+                    return;
+                }
+
+                // 2. Güvenlik Kontrolü: Envanter sahnede var mý?
+                InventoryManager inventory = FindObjectOfType<InventoryManager>();
+                if (inventory == null)
+                {
+                    Debug.LogError($"[{nameof(Door)}] Sahnede InventoryManager bulunamadý! P_Player üzerinde olduðundan emin ol.");
+                    return;
+                }
+
+                // 3. Mantýksal Kontrol: Anahtar var mý?
+                if (inventory.HasItem(m_RequiredKey.ItemID))
+                {
+                    m_IsLocked = false;
                     Debug.Log("<color=green>[Door]</color> Kilit açýldý!");
                 }
                 else
