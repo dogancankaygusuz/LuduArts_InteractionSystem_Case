@@ -177,8 +177,16 @@ Assets/
 │   │   │   └── UI/
 │   │   │       └── InteractionPromptUI.cs
 │   ├── ScriptableObjects/
+│   │   ├── Items/
+│   │   │   ├── SO_Key_Blue.asset
+│   │   │   └── SO_Key_Red.asset
 │   ├── Prefabs/
-│   ├── Materials/
+│   │   ├── Interactables/
+│   │   │   ├── P_Chest.prefab
+│   │   │   └── P_Door.prefab
+│   │   │   └── P_Switch.prefab
+│   │   ├── Player/
+│   │   │   └── P_Player.prefab
 │   └── Scenes/
 │       └── TestScene.unity
 ├── Docs/
@@ -189,4 +197,15 @@ Assets/
 ├── PROMPTS.md
 └── .gitignore
 ```
+## İletişim
+
+| Bilgi | Değer |
+|-------|-------|
+| Ad Soyad | Mehmet Doğancan Kaygusuz |
+| E-posta | mehmetdogancankaygusuz@gmail.com |
+| LinkedIn | https://www.linkedin.com/in/dogancan-kaygusuz |
+| GitHub | https://github.com/dogancankaygusuz |
+
+*Bu proje Ludu Arts Unity Developer Intern Case için hazırlanmıştır.*
+
 ---
