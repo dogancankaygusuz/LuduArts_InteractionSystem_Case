@@ -10,7 +10,7 @@ Ludu Arts Unity Developer Intern Case kapsamında geliştirilmiş, modüler, gen
   
   ## Kurulum
 - **Nasıl Açılır:** 
-  1. Repository'yi klonlayın:
+1. Repository'yi klonlayın:
 ```bash
 git clone https://github.com/dogancankaygusuz/LuduArts_InteractionSystem_Case.git
 ```
