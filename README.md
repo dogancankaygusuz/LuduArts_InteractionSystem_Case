@@ -26,26 +26,41 @@ git clone https://github.com/dogancankaygusuz/LuduArts_InteractionSystem_Case.gi
 | Mouse | Bakış yönü |
 | E | Etkileşim |
 
-- **Test Senaryosu:**
-  1. Önce kilitli kapıya (`P_Door`) gidin; kilitli olduğunu ve anahtar gerektiğini görün.
-  2. Sandığa (`P_Chest`) gidin ve `E` tuşuna 2 saniye basılı tutarak açın. İçinden Kırmızı Anahtarı alın.
-  3. Yerden Mavi Anahtarı (`P_Key_Blue`) alın.
-  4. Şaltere (`P_Switch`) basarak uzaktaki dekoratif kapıyı tetikleyin.
-  5. Doğru anahtarlarla kilitli kapıyı açın.
+### Test Senaryoları
+  1. **Door Test:**
+   - Kapıya yaklaşın, "Press E to Open" mesajını görün
+   - E'ye basın, kapı açılsın
+   - Tekrar basın, kapı kapansın
 
-## 🏗️ Mimari Kararlar
+2. **Key + Locked Door Test:**
+   - Kilitli kapıya yaklaşın, "Locked - Key Required" mesajını görün
+   - Anahtarı bulun ve toplayın
+   - Kilitli kapıya geri dönün, şimdi açılabilir olmalı
 
-### 1. Interface & Base Class Stratejisi
-Sistem, **Dependency Inversion** prensibine uygun olarak `IInteractable` interface'i üzerine kurulmuştur. `InteractionDetector`, somut sınıflara (Door, Key vb.) değil, bu arayüze bağımlıdır. 
-- `InteractableBase`: Kod tekrarını (DRY) önlemek için tüm ortak mantığı (Prompt, Highlight, State) burada topladım.
-- **Liskov Substitution:** Her yeni etkileşim türü, mevcut sistemi bozmadan sisteme dahil edilebilir.
+3. **Switch Test:**
+   - Switch'e yaklaşın ve aktive edin
+   - Bağlı nesnenin (kapı/ışık vb.) tetiklendiğini görün
 
-### 2. Event-Based UI & Chaining
-Sistemde **Observer Pattern** kullanılmıştır. `InteractionDetector`, bir nesne bulduğunda veya kaybettiğinde C# Action'ları (`OnInteractableFound`, `OnInteractableLost`) tetikler. UI, bu eventleri dinleyerek detector'dan tamamen bağımsız (Decoupled) çalışır.
-- `UnityEvent` kullanımı sayesinde "Switch -> Door" gibi zincirleme etkileşimler kod yazmadan, tasarımcı dostu bir şekilde kurulabilmektedir.
+4. **Chest Test:**
+   - Sandığa yaklaşın
+   - E'ye basılı tutun, progress bar dolsun
+   - Sandık açılsın ve içindeki item alınsın
+     
+## Mimari Kararlar
 
-### 3. Data-Driven Inventory
-Anahtar ve eşya tanımları için **ScriptableObject** kullanılmıştır. Bu sayede yeni anahtar tipleri oluşturmak için kod değişikliği gerekmez, sadece yeni bir Asset oluşturulması yeterlidir.
+### Interaction System Yapısı
+```
+Sistem, Interface-Based ve Data-Driven bir yapı üzerine kurulmuştur. Oyuncu (Player), somut nesneleri tanımaz; sadece IInteractable arayüzü üzerinden mesaj gönderir.
+```
+
+**Neden bu yapıyı seçtim:**
+> Oyuncu kontrolcüsü ile nesne mantığı birbirinden tamamen ayrılmıştır. Yeni bir etkileşimli nesne eklemek için oyuncu kodunda değişiklik yapmak gerekmez (Open/Closed Principle). InteractableBase sınıfı sayesinde tüm nesneler vurgulama (highlight) ve prompt yönetimi gibi özellikleri otomatik olarak kazanır.
+
+**Alternatifler:**
+> Trigger-Based Interaction: Daha performanslı olabilir ancak FPS oyunlarında hassasiyet (point-and-click hissi) düşük olduğu için Raycast tercih edilmiştir.
+
+**Trade-off'lar:**
+> Raycast kullanımı her karede fizik hesaplaması gerektirir. Bunu optimize etmek için m_CheckInterval kullanılarak tarama sıklığı saniyede 10'a düşürülmüştür.
 
 ## 💎 Ludu Arts Standartlarına Uyum
 Proje boyunca belirtilen tüm standartlara titizlikle uyulmuştur:
