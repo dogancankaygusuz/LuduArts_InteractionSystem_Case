@@ -42,3 +42,41 @@
 
 **Explanation:**
 > Sahne kurulumu ve nesne isimlendirmeleri dökümandaki standartlara %100 uyum sağlayacak şekilde yapılandırıldı. Raycast tabanlı sistemin fizik katmanlarıyla (LayerMask) uyumu sağlandı.
+
+
+
+
+## Prompt 4: Interactable Base Class and Implementation
+
+**Tool:** ChatGPT-4
+**Date/Time:** 2026-02-08 16:10
+
+**Prompt:**
+> "Tamamdır sıradaki adımı detaylı bir şekilde adım adım açıkla (Interactable Base Class ve Test nesnesi oluşturma üzerine)."
+
+**Response (Summary):**
+> Kod tekrarını önlemek için abstract `InteractableBase` sınıfı oluşturuldu. SOLID prensiplerine uygun olarak `IInteractable` interface'i bu base sınıf üzerinden implement edildi. Test amaçlı `TestInteractable` sınıfı yazılarak Raycast Detector ile ilk uçtan uca etkileşim testi (renk değiştirme) gerçekleştirildi.
+
+**How I Used It:**
+- [x] Directly used
+
+**Explanation:**
+> Modülerliği artırmak için kalıtım (inheritance) yapısı kuruldu. Loglama işlemleri Ludu Arts standartlarına (Silent bypass önleme) uygun yapıldı.
+
+
+## Prompt 5: Player Movement and Controller Implementation
+
+**Tool:** ChatGPT-4
+**Date/Time:** 2026-02-08 16:30
+
+**Prompt:**
+> "Oyuncu hareket etmedi şu an hareket ettirmek için yapmam gerekenleri detaylı bir şekilde adım adım açıklar mısın, sonrasında sıradaki adıma geçelim."
+
+**Response (Summary):**
+> CharacterController tabanlı, FPS standartlarında bir PlayerController script'i sağlandı. WASD hareket mekaniği, mouse look (bakış) sistemi ve basit yerçekimi (gravity) mantığı açıklandı. Kod, Ludu Arts coding conventions (m_ prefix, region) kurallarına göre yapılandırıldı.
+
+**How I Used It:**
+- [x] Directly used
+
+**Explanation:**
+> Etkileşim sistemini test edebilmek için gerekli olan temel hareket mekanikleri projeye eklendi. Mouse kilitleme (Cursor lock) ve kamera rotation clamp (sınırlama) gibi detaylar profesyonel standartlarda uygulandı.
