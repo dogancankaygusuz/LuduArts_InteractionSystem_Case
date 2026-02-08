@@ -104,7 +104,7 @@
 ## Prompt 7: Hold Interaction and Progress Bar Implementation
 
 **Tool:** ChatGPT-4
-**Date/Time:** 2026-02-08 17:45
+**Date/Time:** 2026-02-08 16:35
 
 **Prompt:**
 > "Image buna ne sürüklücez bişi gerekli mi, HoldInteractable bunu ekledikten sonra ayarlamalarını adım adım detaylı bir şekilde anlat, PROMPTS.md: 'Prompt 7: Hold Interaction and Progress Bar' başlığıyla işle. Bu kısmı da detaylı bir şekilde anlat ardından sıradaki adımı detaylı bir şekilde açıkla."
@@ -117,3 +117,59 @@
 
 **Explanation:**
 > UI bileşenlerinin birbirine bağlanması ve script üzerindeki referansların doğru atanması sağlandı. Event-based (UnityEvent) yaklaşımı ile kod yazmadan etkileşim sonuçları oluşturulabilmesi sağlandı.
+
+
+## Prompt 8: Toggle Interaction and Door System Implementation
+
+**Tool:** ChatGPT-4
+**Date/Time:** 2026-02-08 18:20
+
+**Prompt:**
+> "Image buna ne sürüklücez bişi gerekli mi, ardından sıradaki adım. (Toggle Interaction ve Kapı sistemi üzerine)"
+
+**Response (Summary):**
+> Unity Sprite Creator kullanılarak placeholder (geçici) UI görselleri oluşturma yöntemi açıklandı. Toggle interaction tipi için base class ve bu sınıftan türeyen dinamik bir Door (Kapı) script'i sağlandı. Kapının fiziksel menteşe yapısı ve Quaternion.Slerp ile yumuşak açılma mekaniği dökümante edildi.
+
+**How I Used It:**
+- [x] Directly used
+
+**Explanation:**
+> Case gereksinimlerinden olan Toggle tipi ve Kapı etkileşimi, Ludu Arts standartlarına (P_ prefix, smooth rotation) uygun şekilde sisteme dahil edildi.
+
+
+
+## Prompt 9: Debugging Interaction System Issues
+
+**Tool:** ChatGPT-4
+**Date/Time:** 2026-02-08 19:15
+
+**Prompt:**
+> "Kapının yakınına geldim hiçbir şey olmadı."
+
+**Response (Summary):**
+> Etkileşim sistemindeki yaygın hatalar (Layer uyuşmazlığı, Collider eksikliği, RaycastOrigin referans hatası) için check-list sağlandı. Physics.Raycast ve LayerMask arasındaki ilişkinin doğrulanması için teknik rehberlik verildi. Script ve Collider'ın aynı hiyerarşi seviyesinde bulunmasının önemi vurgulandı.
+
+**How I Used It:**
+- [x] Directly used
+
+**Explanation:**
+> Sistemin çalışmama sebebi analiz edildi ve Layer ayarlarının yapılandırılmasıyla sorun çözüldü. Bu süreç, sistemin hata toleransı ve doğru konfigürasyon gereksinimlerini anlamamı sağladı.
+
+
+
+## Prompt 10: Inventory and Key System with ScriptableObjects
+
+**Tool:** ChatGPT-4
+**Date/Time:** 2026-02-08 20:10
+
+**Prompt:**
+> "Simple Inventory ve Key sistemi üzerine sıradaki adımı detaylı açıklar mısın."
+
+**Response (Summary):**
+> ScriptableObject tabanlı Item sistemi, InventoryManager ve KeyPickup sınıfları implement edildi. Door sınıfı genişletilerek kilitli (Locked) durum yönetimi ve anahtar kontrol mekanizması eklendi. UI Prompt'un kilit durumuna göre dinamik değişimi sağlandı.
+
+**How I Used It:**
+- [x] Directly used
+
+**Explanation:**
+> Case'in "Must Have" gereksinimlerinden olan anahtar-kilit mekanizması ve envanter yönetimi SOLID prensiplerine uygun olarak tamamlandı.
