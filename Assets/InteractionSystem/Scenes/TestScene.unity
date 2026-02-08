@@ -1180,7 +1180,7 @@ GameObject:
   - component: {fileID: 877265354}
   - component: {fileID: 877265353}
   - component: {fileID: 877265352}
-  - component: {fileID: 877265351}
+  - component: {fileID: 877265356}
   m_Layer: 6
   m_Name: P_Switch
   m_TagString: Untagged
@@ -1188,38 +1188,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &877265351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877265350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34df5d0228847034da41af2bd1e6cbdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractionSystem.Runtime.Interactables.ToggleInteractable
-  m_InteractionType: 2
-  m_InteractionPrompt: Interact
-  m_CanInteract: 1
-  m_HighlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  m_IsToggled: 0
-  OnToggleChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 865279285}
-        m_TargetAssemblyTypeName: InteractionSystem.Runtime.Interactables.Door, Assembly-CSharp
-        m_MethodName: OnInteract
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!65 &877265352
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1313,6 +1281,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &877265356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877265350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6acf9ab1f91e810449032adbb3bbb47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionSystem.Runtime.Interactables.Switch
+  m_InteractionType: 2
+  m_InteractionPrompt: Flip Switch
+  m_CanInteract: 1
+  m_HighlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_IsToggled: 0
+  OnToggleChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 865279285}
+        m_TargetAssemblyTypeName: InteractionSystem.Runtime.Interactables.Door, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_HandleTransform: {fileID: 0}
+  m_OnRotation: {x: 45, y: 0, z: 0}
+  m_OffRotation: {x: -45, y: 0, z: 0}
 --- !u!1 &884724198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,58 +1697,14 @@ GameObject:
   - component: {fileID: 1803260258}
   - component: {fileID: 1803260257}
   - component: {fileID: 1803260256}
-  - component: {fileID: 1803260255}
-  m_Layer: 0
+  - component: {fileID: 1803260260}
+  m_Layer: 6
   m_Name: P_Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1803260255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803260254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c162ef42f775faf4e9967bbbebcd7fcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractionSystem.Runtime.Interactables.HoldInteractable
-  m_InteractionType: 1
-  m_InteractionPrompt: Hold E to Open Chest
-  m_CanInteract: 1
-  m_HighlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  m_HoldDuration: 2
-  OnHoldComplete:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1738038412}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1803260257}
-        m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!135 &1803260256
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1840,6 +1799,28 @@ Transform:
   - {fileID: 1738038417}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1803260260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803260254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00808f7ca5521b141a8e496338fa9233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionSystem.Runtime.Interactables.Chest
+  m_InteractionType: 1
+  m_InteractionPrompt: Open Chest
+  m_CanInteract: 1
+  m_HighlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_HoldDuration: 2
+  OnHoldComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StoredItem: {fileID: 11400000, guid: ab2fcff2fde16fe4789934373758b149, type: 2}
+  m_IsOpened: 0
 --- !u!1 &1827386490
 GameObject:
   m_ObjectHideFlags: 0
