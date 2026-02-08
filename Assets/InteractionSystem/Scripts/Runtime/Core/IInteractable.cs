@@ -18,7 +18,8 @@ namespace InteractionSystem.Runtime.Core
         #region Methods
 
         void OnInteract();
-
+        void OnHoverEnter();
+        void OnHoverExit();
         #endregion
     }
 }

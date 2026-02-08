@@ -208,3 +208,21 @@
 
 **Explanation:**
 > Editor kaynaklı hatalar giderilerek sistem stabilitesi artırıldı. Sandık ve Şalter gibi karmaşık nesneler, dökümandaki modüler yapıya sadık kalınarak oluşturuldu.
+
+
+## Prompt 13: Refactoring Chest and Switch Systems
+
+**Tool:** ChatGPT-4
+**Date/Time:** 2026-02-08 22:15
+
+**Prompt:**
+> "Chestte anahtar kısmı sıkıntılı aynı şekilde switch te bu arada düzeltmem gereken kısımları detaylı bir şekilde adım adım açıkla."
+
+**Response (Summary):**
+> Chest ve Switch sistemleri, daha robust (sağlam) ve görsel geri bildirimli sınıflar (`Chest.cs`, `Switch.cs`) ile refactor edildi. Sandığın tek seferlik açılma mantığı ve eşya verme süreci InventoryManager ile entegre edildi. Switch sisteminin UnityEvent yapısı üzerinden başka Interactable nesnelerle (kapı vb.) nasıl zincirleme etkileşim kuracağı detaylandırıldı.
+
+**How I Used It:**
+- [x] Directly used
+
+**Explanation:**
+> Nesneler arası mantıksal hatalar giderildi ve sistem daha sürdürülebilir hale getirildi. Görsel rotasyon animasyonları koda eklenerek kullanıcı deneyimi artırıldı.

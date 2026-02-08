@@ -14,6 +14,10 @@ namespace InteractionSystem.Runtime.Core
         [SerializeField] private string m_InteractionPrompt = "Interact";
         [SerializeField] private bool m_CanInteract = true;
 
+        [Header("Visual Feedback")]
+        [SerializeField] private Color m_HighlightColor = Color.yellow;
+        private Color m_OriginalColor;
+        private Renderer m_Renderer;
         #endregion
 
         #region Properties
@@ -25,7 +29,21 @@ namespace InteractionSystem.Runtime.Core
         #endregion
 
         #region Methods
+        protected virtual void Awake()
+        {
+            m_Renderer = GetComponentInChildren<Renderer>();
+            if (m_Renderer != null) m_OriginalColor = m_Renderer.material.color;
+        }
 
+        public virtual void OnHoverEnter()
+        {
+            if (m_Renderer != null) m_Renderer.material.color = m_HighlightColor;
+        }
+
+        public virtual void OnHoverExit()
+        {
+            if (m_Renderer != null) m_Renderer.material.color = m_OriginalColor;
+        }
         /// <summary>
         /// Etkileþim gerçekleþtiðinde çaðrýlýr. Alt sýnýflar bunu override etmelidir.
         /// </summary>

@@ -66,15 +66,14 @@ namespace InteractionSystem.Runtime.Player
             {
                 if (hit.collider.TryGetComponent(out IInteractable interactable))
                 {
-                    if (interactable.CanInteract)
+                    if (m_CurrentInteractable != interactable)
                     {
-                        if (m_CurrentInteractable != interactable)
-                        {
-                            m_CurrentInteractable = interactable;
-                            OnInteractableFound?.Invoke(m_CurrentInteractable);
-                        }
-                        return;
+                        m_CurrentInteractable?.OnHoverExit();
+                        m_CurrentInteractable = interactable;
+                        m_CurrentInteractable.OnHoverEnter();
+                        OnInteractableFound?.Invoke(m_CurrentInteractable);
                     }
+                    return;
                 }
             }
             ClearCurrentInteractable();
@@ -131,6 +130,7 @@ namespace InteractionSystem.Runtime.Player
         {
             if (m_CurrentInteractable != null)
             {
+                m_CurrentInteractable.OnHoverExit();    
                 m_CurrentInteractable = null;
                 OnInteractableLost?.Invoke();
             }
