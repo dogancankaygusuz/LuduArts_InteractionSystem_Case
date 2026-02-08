@@ -62,19 +62,131 @@ Sistem, Interface-Based ve Data-Driven bir yapı üzerine kurulmuştur. Oyuncu (
 **Trade-off'lar:**
 > Raycast kullanımı her karede fizik hesaplaması gerektirir. Bunu optimize etmek için m_CheckInterval kullanılarak tarama sıklığı saniyede 10'a düşürülmüştür.
 
-## 💎 Ludu Arts Standartlarına Uyum
-Proje boyunca belirtilen tüm standartlara titizlikle uyulmuştur:
-- **Naming Convention:** 
-  - Prefablar için `P_`, Materyaller için `M_`, Textures için `T_`, ScriptableObject'ler için `SO_` prefixleri kullanılmıştır.
-- **C# Coding Conventions:** 
-  - Private field'lar `m_`, static field'lar `s_`, sabitler `k_` prefixi ile tanımlanmıştır.
-  - Kod içerisinde standart `region` sıralaması (`Fields, Events, Properties, Methods...`) uygulanmıştır.
-  - Tüm Public API'lar XML documentation ile belgelenmiştir.
-- **Prefab Yapısı:** 
-  - Tüm prefabların Transform değerleri (0,0,0) olarak sıfırlanmış, Pivot noktaları menteşe mantığına uygun (Bottom-center veya Menteşe kenarı) ayarlanmıştır.
+### Kullanılan Design Patterns
 
-## 🛠️ Bilinen Limitasyonlar & İyileştirmeler
-- **Limitasyon:** Şu anki sistemde aynı anda birden fazla anahtar gerektiren kapılar için `InventoryManager`ın genişletilmesi gerekebilir.
-- **Öneri:** Gelecekte etkileşim anında karakter animasyonları (Inverse Kinematics) eklenerek görsel kalite artırılabilir.
+| Pattern | Kullanım Yeri | Neden |
+|---------|---------------|-------|
+| Strategy | Interaction Types | Farklı etkileşim davranışlarını aynı interface altında yönetmek için. |
+| Template Method | InteractableBase | Alt sınıfların ortak iskeleti kullanıp kendi davranışlarını (OnInteract) tanımlaması için. |
+| Observer | UI ve Event Sistemi | Detector ve UI arasındaki bağı koparmak, event-based bir yapı kurmak için |
 
+## Ludu Arts Standartlarına Uyum
+### C# Coding Conventions
+| Kural | Uygulandı | Notlar |
+|-------|-----------|--------|
+| m_ prefix (private fields) | [x] / [ ] | Tüm private değişkenlerde uygulandı. |
+| s_ prefix (private static) | [x] / [ ] | Statik değişkenlerde kullanıldı. |
+| k_ prefix (private const) | [x] / [ ] | Sabitlerde uygulandı. |
+| Region kullanımı | [x] / [ ] | Standart region yapısı kuruldu. |
+| Region sırası doğru | [x] / [ ] | Fields > Events > Properties > Methods |
+| XML documentation | [x] / [ ] | Tüm Public API'lar belgelendi. |
+| Silent bypass yok | [x] / [ ] | Hatalar Debug.LogError ile yakalandı. |
+| Explicit interface impl. | [x] / [ ] | |
+
+### Naming Convention
+
+| Kural | Uygulandı | Örnekler |
+|-------|-----------|----------|
+| P_ prefix (Prefab) | [x] / [ ] | P_Door, P_Player, P_Chest |
+| M_ prefix (Material) | [] / [x] | |
+| T_ prefix (Texture) | [] / [x] | |
+| SO isimlendirme | [x] / [ ] | SO_Key_Blue, SO_Item_Data |
+
+### Prefab Kuralları
+
+| Kural | Uygulandı | Notlar |
+|-------|-----------|--------|
+| Transform (0,0,0) | [x] / [ ] | |
+| Pivot bottom-center | [x] / [ ] | |
+| Collider tercihi | [x] / [ ] | |
+| Hierarchy yapısı | [x] / [ ] | |
+
+### Zorlandığım Noktalar
+> Projenin başında yerleşik alışkanlıklar nedeniyle m_, s_ ve k_ prefixlerini her field için tutarlı bir şekilde uygulamak ekstra bir dikkat gerektirdi. Spesifik region sıralaması (Fields > Events > Properties... sırası), standart C# düzeninden biraz farklı olduğu için her yeni sınıf oluşturduğunda bu hiyerarşiyi manuel olarak düzenlemek zaman aldı.
+
+## Tamamlanan Özellikler
+
+### Zorunlu (Must Have)
+
+- [x] / [ ] Core Interaction System
+  - [x] / [ ] IInteractable interface
+  - [x] / [ ] InteractionDetector
+  - [x] / [ ] Range kontrolü
+
+- [x] / [ ] Interaction Types
+  - [x] / [ ] Instant
+  - [x] / [ ] Hold
+  - [x] / [ ] Toggle
+
+- [x] / [ ] Interactable Objects
+  - [x] / [ ] Door (locked/unlocked)
+  - [x] / [ ] Key Pickup
+  - [x] / [ ] Switch/Lever
+  - [x] / [ ] Chest/Container
+
+- [x] / [ ] UI Feedback
+  - [x] / [ ] Interaction prompt
+  - [x] / [ ] Dynamic text
+  - [x] / [ ] Hold progress bar
+  - [x] / [ ] Cannot interact feedback
+
+- [x] / [ ] Simple Inventory
+  - [x] / [ ] Key toplama
+  - [x] / [ ] UI listesi
+
+### Bonus (Nice to Have)
+
+- [ ] Animation entegrasyonu
+- [ ] Sound effects
+- [ ] Multiple keys / color-coded
+- [x] Interaction highlight
+- [ ] Save/Load states
+- [x] Chained interactions
+
+## Bilinen Limitasyonlar
+
+### İyileştirme Önerileri
+
+1. Highlighting - Şu anki renk değişimi yerine daha kaliteli bir "Outline Shader" kullanılabilir.
+2. Persistence - Save/Load sistemi eklenerek etkileşim durumları (açık kapılar vb.) kaydedilebilir.
+
+## Dosya Yapısı
+
+```
+Assets/
+├── InteractionSystem/
+│   ├── Scripts/
+│   │   ├── Runtime/
+│   │   │   ├── Core/
+│   │   │   │   ├── IInteractable.cs
+│   │   │   │   └── InteractableBase.cs
+│   │   │   │   └── InteractionType.cs
+│   │   │   │   └── ItemData.cs
+│   │   │   ├── Interactables/
+│   │   │   │   ├── Chest.cs
+│   │   │   │   └── Door.cs
+│   │   │   │   └── HoldInteractable.cs
+│   │   │   │   └── KeyPickup.cs
+│   │   │   │   └── Switch.cs
+│   │   │   │   └── TestInteractable.cs
+│   │   │   │   └── ToggleInteractable.cs
+│   │   │   ├── Player/
+│   │   │   │   ├── InteractionDetector.cs
+│   │   │   │   └── InventoryManager.cs
+│   │   │   │   └── PlayerController.cs
+│   │   │   └── UI/
+│   │   │       └── InteractionPromptUI.cs
+│   ├── ScriptableObjects/
+│   ├── Prefabs/
+│   ├── Materials/
+│   └── Scenes/
+│       └── TestScene.unity
+├── Docs/
+│   ├── CSharp_Coding_Conventions.md
+│   ├── Naming_Convention_Kilavuzu.md
+│   └── Prefab_Asset_Kurallari.md
+├── README.md
+├── PROMPTS.md
+└── .gitignore
+```
 ---
