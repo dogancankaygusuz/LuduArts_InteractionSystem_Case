@@ -48,7 +48,7 @@
 
 ## Prompt 4: Interactable Base Class and Implementation
 
-**Tool:** ChatGPT-4
+**Tool:** Gemini-3 Flash-Preview
 **Date/Time:** 2026-02-08 16:10
 
 **Prompt:**
@@ -64,19 +64,38 @@
 > Modülerliği artırmak için kalıtım (inheritance) yapısı kuruldu. Loglama işlemleri Ludu Arts standartlarına (Silent bypass önleme) uygun yapıldı.
 
 
-## Prompt 5: Player Movement and Controller Implementation
+## Prompt 5: Player Movement and Mouse Movement
 
-**Tool:** ChatGPT-4
-**Date/Time:** 2026-02-08 16:30
+**Tool:** Gemini-3 Flash-Preview
+**Date/Time:** 2026-02-08 15:20
 
 **Prompt:**
-> "Oyuncu hareket etmedi şu an hareket ettirmek için yapmam gerekenleri detaylı bir şekilde adım adım açıklar mısın, sonrasında sıradaki adıma geçelim."
+> "Oyuncu hareket etti fakat mouse kontrolleri istediğimiz gibi çalışmadı, mouse hareketlerinin doğru bir şekilde çalışabilmesi için yapmam gerekenleri detaylı bir şekilde adım adım açıklar mısın, sonrasında sıradaki adıma geçelim."
 
 **Response (Summary):**
-> CharacterController tabanlı, FPS standartlarında bir PlayerController script'i sağlandı. WASD hareket mekaniği, mouse look (bakış) sistemi ve basit yerçekimi (gravity) mantığı açıklandı. Kod, Ludu Arts coding conventions (m_ prefix, region) kurallarına göre yapılandırıldı.
+> CharacterController tabanlı, FPS standartlarında bir PlayerController script'i düzenlendi. Mouse hareketi sağlandı ve yeni eklenen gravity mantığı açıklandı.
+
+**How I Used It:**
+- [x] Adapted
+
+**Explanation:**
+> Mouse hareketleri profesyonel standartlarda uygulandı ve test edildi sorun ortadan kalktı.
+
+
+
+## Prompt 6: UI Interaction Prompt Implementation
+
+**Tool:** ChatGPT-4
+**Date/Time:** 2026-02-08 17:10
+
+**Prompt:**
+> "Tamamdır her şey yolunda sıradaki adıma geçelim. (UI Feedback/Prompt sistemi üzerine)"
+
+**Response (Summary):**
+> TextMeshPro tabanlı dinamik bir UI Prompt sistemi kuruldu. InteractionDetector'daki C# eventleri (Action) kullanılarak Observer Pattern uygulandı. Bu sayede detector bir nesne bulduğunda UI otomatik olarak güncelleniyor. Ludu Arts naming convention ve UI prefab kuralları (P_UI_ prefix) uygulandı.
 
 **How I Used It:**
 - [x] Directly used
 
 **Explanation:**
-> Etkileşim sistemini test edebilmek için gerekli olan temel hareket mekanikleri projeye eklendi. Mouse kilitleme (Cursor lock) ve kamera rotation clamp (sınırlama) gibi detaylar profesyonel standartlarda uygulandı.
+> Kullanıcı deneyimini (UX) artırmak için nesneye duyarlı dinamik metin sistemi sisteme entegre edildi. Decoupled (bağımsız) bir yapı kurulması için event-based mimari tercih edildi.
