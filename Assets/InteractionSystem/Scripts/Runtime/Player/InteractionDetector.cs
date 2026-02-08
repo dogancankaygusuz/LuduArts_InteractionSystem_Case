@@ -1,5 +1,6 @@
-using System;
 using InteractionSystem.Runtime.Core;
+using InteractionSystem.Runtime.Interactables;
+using System;
 using UnityEngine;
 
 namespace InteractionSystem.Runtime.Player
@@ -20,8 +21,12 @@ namespace InteractionSystem.Runtime.Player
         [Header("References")]
         [SerializeField] private Transform m_RaycastOrigin;
 
+        public event Action<float> OnHoldProgressChanged;
+
         private IInteractable m_CurrentInteractable;
-        private float m_LastCheckTime;
+        private float m_LastCheckTime; 
+        private float m_HoldTimer = 0f;
+       
 
         #endregion
 
@@ -77,10 +82,43 @@ namespace InteractionSystem.Runtime.Player
 
         private void HandleInteractionInput()
         {
-            if (m_CurrentInteractable == null) return;
+            if (m_CurrentInteractable == null)
+            {
+                ResetHoldTimer();
+                return;
+            }
 
-            if (Input.GetKeyDown(m_InteractionKey))
-                m_CurrentInteractable.OnInteract();
+            if (m_CurrentInteractable is HoldInteractable holdInteractable)
+            {
+                if (Input.GetKey(m_InteractionKey))
+                {
+                    m_HoldTimer += Time.deltaTime;
+                    float progress = Mathf.Clamp01(m_HoldTimer / holdInteractable.HoldDuration);
+                    OnHoldProgressChanged?.Invoke(progress);
+
+                    if (m_HoldTimer >= holdInteractable.HoldDuration)
+                    {
+                        holdInteractable.InteractComplete();
+                        ResetHoldTimer();
+                    }
+                }
+                else if (Input.GetKeyUp(m_InteractionKey))
+                    ResetHoldTimer();
+            }
+            else
+            {
+                if (Input.GetKeyDown(m_InteractionKey))
+                    m_CurrentInteractable.OnInteract();
+            }
+        }
+
+        private void ResetHoldTimer()
+        {
+            if (m_HoldTimer > 0)
+            {
+                m_HoldTimer = 0f;
+                OnHoldProgressChanged?.Invoke(0f);
+            }
         }
 
         private void ClearCurrentInteractable()

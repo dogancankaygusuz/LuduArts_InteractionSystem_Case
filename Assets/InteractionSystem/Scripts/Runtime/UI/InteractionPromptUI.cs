@@ -16,7 +16,7 @@ namespace InteractionSystem.Runtime.UI
         [SerializeField] private InteractionDetector m_Detector;
         [SerializeField] private TextMeshProUGUI m_PromptText;
         [SerializeField] private GameObject m_PromptPanel;
-
+        [SerializeField] private UnityEngine.UI.Image m_ProgressBarImage;
         #endregion
 
         #region Unity Methods
@@ -27,6 +27,7 @@ namespace InteractionSystem.Runtime.UI
             {
                 m_Detector.OnInteractableFound += ShowPrompt;
                 m_Detector.OnInteractableLost += HidePrompt;
+                m_Detector.OnHoldProgressChanged += UpdateProgressBar;
             }
             HidePrompt();
         }
@@ -37,6 +38,7 @@ namespace InteractionSystem.Runtime.UI
             {
                 m_Detector.OnInteractableFound -= ShowPrompt;
                 m_Detector.OnInteractableLost -= HidePrompt;
+                m_Detector.OnHoldProgressChanged += UpdateProgressBar;
             }
         }
 
@@ -59,6 +61,15 @@ namespace InteractionSystem.Runtime.UI
         private void HidePrompt()
         {
             m_PromptPanel.SetActive(false);
+        }
+
+        private void UpdateProgressBar(float progress)
+        {
+            if (m_ProgressBarImage != null)
+            {
+                m_ProgressBarImage.fillAmount = progress;
+                m_ProgressBarImage.transform.parent.gameObject.SetActive(progress > 0);
+            }
         }
 
         #endregion

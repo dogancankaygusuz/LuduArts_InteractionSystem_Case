@@ -99,3 +99,21 @@
 
 **Explanation:**
 > Kullanıcı deneyimini (UX) artırmak için nesneye duyarlı dinamik metin sistemi sisteme entegre edildi. Decoupled (bağımsız) bir yapı kurulması için event-based mimari tercih edildi.
+
+
+## Prompt 7: Hold Interaction and Progress Bar Implementation
+
+**Tool:** ChatGPT-4
+**Date/Time:** 2026-02-08 17:45
+
+**Prompt:**
+> "Image buna ne sürüklücez bişi gerekli mi, HoldInteractable bunu ekledikten sonra ayarlamalarını adım adım detaylı bir şekilde anlat, PROMPTS.md: 'Prompt 7: Hold Interaction and Progress Bar' başlığıyla işle. Bu kısmı da detaylı bir şekilde anlat ardından sıradaki adımı detaylı bir şekilde açıkla."
+
+**Response (Summary):**
+> Hold interaction mekaniği için gereken UI hiyerarşisi (Background ve Fill imajları) açıklandı. Unity'nin Image component'indeki 'Filled' özelliği kullanılarak dinamik progress bar yapısı kuruldu. HoldInteractable sınıfının Unity Inspector üzerinden UnityEvent'ler ile nasıl modüler hale getirileceği (örneğin etkileşim bitince objeyi deaktif etme) adım adım rehberlendi.
+
+**How I Used It:**
+- [x] Adapted
+
+**Explanation:**
+> UI bileşenlerinin birbirine bağlanması ve script üzerindeki referansların doğru atanması sağlandı. Event-based (UnityEvent) yaklaşımı ile kod yazmadan etkileşim sonuçları oluşturulabilmesi sağlandı.
